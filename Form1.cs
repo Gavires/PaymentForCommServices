@@ -30,15 +30,25 @@ namespace PaymentForCommServices
             {
                 LoginName = "Adm"
             };            
-            if (admin.IsAdmin) {
-                try {
-                    userRepository.AddUser(user);
-                    var users = userRepository.Get(1);
-                    MessageBox.Show(users.Name);
-                    Close();
-                }
-                catch (Exception ex) { MessageBox.Show(ex.ToString()); }
+            //if (admin.IsAdmin) {
+            //    try {
+            //        userRepository.AddUser(user);
+            //        var users = userRepository.Get(1);
+            //        MessageBox.Show(users.Name);
+            //        Close();
+            //    }
+            //    catch (Exception ex) { MessageBox.Show(ex.ToString()); }
+            //}
+
+            if(userRepository.AutorizationUser(user))
+            {
+                MessageBox.Show($"Доступ открыт {user.Name}");
             }
+            else
+            {
+                MessageBox.Show("Неверное имя или пароль!");
+            }
+
             MessageBox.Show("Добрый день!");
         }
 
