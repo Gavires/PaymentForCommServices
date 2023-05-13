@@ -13,6 +13,6 @@ namespace PaymentForCommServices {
         public Run () {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1(userRepository)); }
+            Application.Run(new AuthorizationForm(userRepository)); }
     }
 }

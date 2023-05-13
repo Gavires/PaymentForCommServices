@@ -22,13 +22,13 @@ namespace PaymentForCommServices {
             var host = CreateHostBuilder().Build();
             ServiceProvider = host.Services;
 
-            Application.Run(ServiceProvider.GetRequiredService<Form1>());
+            Application.Run(ServiceProvider.GetRequiredService<AuthorizationForm>());
         }
         public static IServiceProvider ServiceProvider { get; private set; }
         static IHostBuilder CreateHostBuilder() {
             return Host.CreateDefaultBuilder()
                 .ConfigureServices((context, services) => {
-                    services.AddTransient<Form1>()
+                    services.AddTransient<AuthorizationForm>()
                     .AddScoped<BaseDb>(_ => new PCS())
                     .AddScoped<IUserRepository>(_ => new UserRepository(new PCS()));
                     //services.AddTransient<Form1>();
