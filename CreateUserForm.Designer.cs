@@ -45,6 +45,8 @@
             this.RepetPasswordRegLabel = new System.Windows.Forms.Label();
             this.RepetPasswordRegInput = new System.Windows.Forms.TextBox();
             this.RepetPasswordRegValidLabel = new System.Windows.Forms.Label();
+            this.AddUseerRegButton = new System.Windows.Forms.Button();
+            this.CanceReadlRegButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // UserNameRegInput
@@ -199,11 +201,32 @@
             this.RepetPasswordRegValidLabel.TabIndex = 16;
             this.RepetPasswordRegValidLabel.Text = "Повторите Пароль*";
             // 
+            // AddUseerRegButton
+            // 
+            this.AddUseerRegButton.Location = new System.Drawing.Point(285, 294);
+            this.AddUseerRegButton.Name = "AddUseerRegButton";
+            this.AddUseerRegButton.Size = new System.Drawing.Size(118, 23);
+            this.AddUseerRegButton.TabIndex = 17;
+            this.AddUseerRegButton.Text = "Готово";
+            this.AddUseerRegButton.UseVisualStyleBackColor = true;
+            this.AddUseerRegButton.Click += new System.EventHandler(this.AddUseerRegButton_Click);
+            // 
+            // CanceReadlRegButton
+            // 
+            this.CanceReadlRegButton.Location = new System.Drawing.Point(161, 294);
+            this.CanceReadlRegButton.Name = "CanceReadlRegButton";
+            this.CanceReadlRegButton.Size = new System.Drawing.Size(118, 23);
+            this.CanceReadlRegButton.TabIndex = 18;
+            this.CanceReadlRegButton.Text = "Отмена";
+            this.CanceReadlRegButton.UseVisualStyleBackColor = true;
+            // 
             // CreateUserForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(429, 283);
+            this.ClientSize = new System.Drawing.Size(459, 354);
+            this.Controls.Add(this.CanceReadlRegButton);
+            this.Controls.Add(this.AddUseerRegButton);
             this.Controls.Add(this.RepetPasswordRegValidLabel);
             this.Controls.Add(this.RepetPasswordRegInput);
             this.Controls.Add(this.RepetPasswordRegLabel);
@@ -247,5 +270,7 @@
         internal System.Windows.Forms.TextBox LastNameRegInput;
         internal System.Windows.Forms.TextBox EmailRegInput;
         internal System.Windows.Forms.TextBox RepetPasswordRegInput;
+        private System.Windows.Forms.Button AddUseerRegButton;
+        private System.Windows.Forms.Button CanceReadlRegButton;
     }
 }

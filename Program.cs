@@ -7,6 +7,8 @@ using System.Windows.Forms;
 using CommServices.Core.Abstract.Entity;
 using CommServices.Core.Abstract.Repository;
 using CommServices.Core.Repository;
+using CommServices.Core.Abstract.Validations;
+using CommServices.Core.Validations;
 
 namespace PaymentForCommServices {
     internal class Program {
@@ -30,7 +32,19 @@ namespace PaymentForCommServices {
                 .ConfigureServices((context, services) => {
                     services.AddTransient<AuthorizationForm>()
                     .AddScoped<BaseDb>(_ => new PCS())
-                    .AddScoped<IUserRepository>(_ => new UserRepository(new PCS()));
+                    .AddScoped<IUserRepository>(_ => new UserRepository(new PCS()))
+                    .AddScoped<IUserInputValidation>(_ => new UserInputValidation());
+                    services.AddScoped<ICreateUserRepository>(serviceProvider =>
+                    {
+                        var validation = serviceProvider.GetRequiredService<IUserInputValidation>();
+                        var userRepository = serviceProvider.GetRequiredService<IUserRepository>();
+                        return new CreateUserRepository(validation, userRepository);
+                    });
+                    //.AddScoped<ICreateUserRepository>(_ => new CreateUserRepository(new UserInputValidation(), new UserRepository(new PCS())));
+                    //.AddTransient<CreateUserForm>()
+                    //.AddScoped<BaseDb>(_ => new PCS())
+                    //.AddScoped<IUserRepository>(_ => new UserRepository(new PCS()));
+                    
                     //services.AddTransient<Form1>();
                 });
         }

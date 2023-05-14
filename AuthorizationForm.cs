@@ -1,5 +1,6 @@
 ﻿using CommServices.Core.Abstract.Entity;
 using CommServices.Core.Abstract.Repository;
+using CommServices.Core.Abstract.Validations;
 using System;
 using System.Windows.Forms;
 
@@ -8,11 +9,18 @@ namespace PaymentForCommServices
     public partial class AuthorizationForm : Form
     {
         readonly IUserRepository userRepository;
-        public AuthorizationForm(IUserRepository _userRepository)
+        readonly IUserInputValidation userInputValidation;
+        readonly ICreateUserRepository createUserRepository;
+        public AuthorizationForm(
+            IUserRepository _userRepository, 
+            IUserInputValidation _userInputValidation,
+            ICreateUserRepository _createUserRepository)
         {
             userRepository = _userRepository;
+            userInputValidation = _userInputValidation;
+            createUserRepository = _createUserRepository;
             InitializeComponent();
-
+            
         }
 
         private void EntranceButton_Click(object sender, EventArgs e)
@@ -35,18 +43,8 @@ namespace PaymentForCommServices
 
         private void CreateUser_Click(object sender, EventArgs e)
         {
-            var createUserForm = new CreateUserForm();
+            var createUserForm = new CreateUserForm(userRepository, userInputValidation, createUserRepository);
             createUserForm.ShowDialog();
-            var user = new User()
-            {
-                Name = createUserForm.NameRegInput.Text,
-                LastName = createUserForm.LastNameRegInput.Text,
-                Email = createUserForm.EmailRegInput.Text,
-                UserName = createUserForm.UserNameRegInput.Text,
-                Password = createUserForm.PasswordRegInput.Text,
-            };
-
-            MessageBox.Show($"Будет записан такой пользователь: {user.Name}");
         }
     }
 }
