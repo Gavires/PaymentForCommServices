@@ -4,7 +4,7 @@ using Microsoft.Extensions.Hosting;
 using System.Reflection;
 using System;
 using System.Windows.Forms;
-using CommServices.Core.Abstract.Entity;
+using CommServices.Core.Abstract.EntityCore;
 using CommServices.Core.Abstract.Repository;
 using CommServices.Core.Repository;
 using CommServices.Core.Abstract.Validations;

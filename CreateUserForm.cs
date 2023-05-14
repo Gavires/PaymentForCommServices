@@ -1,6 +1,7 @@
-﻿using CommServices.Core.Abstract.Entity;
+﻿using CommServices.Core.Abstract.EntityCore;
 using CommServices.Core.Abstract.Repository;
 using CommServices.Core.Abstract.Validations;
+using CommServices.Core.Entity;
 using System;
 using System.Windows.Forms;
 
@@ -37,17 +38,19 @@ namespace PaymentForCommServices
                 Password = PasswordRegInput.Text,
             };
 
-            if(!createUserRepository.AddNewUser(user))
+            if(!createUserRepository.RegisteringNewUser(user))
             {
                 UserNameRegInput.Clear();
                 PasswordRegInput.Clear();
                 UserNameRegValidLabel.Visible = true;
                 PasswordRegValidlabel.Visible = true;
+                RepetPasswordRegLabel.Visible = true;
             }
             else
             {
                 UserNameRegValidLabel.Visible = false;
                 PasswordRegValidlabel.Visible = false;
+                RepetPasswordRegLabel.Visible = false;
                 Close();
             }
         }

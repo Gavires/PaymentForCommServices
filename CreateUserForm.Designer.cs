@@ -200,6 +200,7 @@
             this.RepetPasswordRegValidLabel.Size = new System.Drawing.Size(106, 13);
             this.RepetPasswordRegValidLabel.TabIndex = 16;
             this.RepetPasswordRegValidLabel.Text = "Повторите Пароль*";
+            this.RepetPasswordRegValidLabel.Visible = false;
             // 
             // AddUseerRegButton
             // 
