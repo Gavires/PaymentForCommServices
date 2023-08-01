@@ -33,12 +33,14 @@ namespace PaymentForCommServices {
                     services.AddTransient<AuthorizationForm>()
                     .AddScoped<BaseDb>(_ => new PCS())
                     .AddScoped<IUserRepository>(_ => new UserRepository(new PCS()))
-                    .AddScoped<IUserInputValidation>(_ => new UserInputValidation());
+                    .AddScoped<IUserInputValidation>(_ => new UserInputValidation())
+                    .AddScoped<IUserRegistrationHistoryRepository>(_ => new UserRegistrationHistoryRepository(new PCS(), new UserRepository(new PCS())));
                     services.AddScoped<ICreateUserRepository>(serviceProvider =>
                     {
                         var validation = serviceProvider.GetRequiredService<IUserInputValidation>();
                         var userRepository = serviceProvider.GetRequiredService<IUserRepository>();
-                        return new CreateUserRepository(validation, userRepository);
+                        var userRegistrationHistoryRepository = serviceProvider.GetRequiredService<IUserRegistrationHistoryRepository>();
+                        return new CreateUserRepository(validation, userRepository, userRegistrationHistoryRepository);
                     });
                     //.AddScoped<ICreateUserRepository>(_ => new CreateUserRepository(new UserInputValidation(), new UserRepository(new PCS())));
                     //.AddTransient<CreateUserForm>()

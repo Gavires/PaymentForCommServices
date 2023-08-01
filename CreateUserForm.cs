@@ -40,8 +40,6 @@ namespace PaymentForCommServices
 
             if(!createUserRepository.RegisteringNewUser(user))
             {
-                UserNameRegInput.Clear();
-                PasswordRegInput.Clear();
                 UserNameRegValidLabel.Visible = true;
                 PasswordRegValidlabel.Visible = true;
                 RepetPasswordRegLabel.Visible = true;
